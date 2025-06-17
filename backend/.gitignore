@@ -1,0 +1,18 @@
+# Node
+node_modules/
+.env
+
+# React
+frontend/node_modules/
+frontend/dist/
+
+# Logs
+logs/
+*.log
+
+# Docker
+*.local
+docker-compose.override.yml
+
+# System
+.DS_Store
