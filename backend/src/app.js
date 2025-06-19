@@ -1,12 +1,18 @@
-const express =require('express')
-const cors = require('cors')
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 
-app.get('/',(req,res)=>{
-    res.send("API is working!")
-})
-module.exports= app;
+app.use(express.json());
+app.use(cookieParser());
+
+app.use('/api/auth', require('./routes/authRoutes'));
+
+module.exports = app;
