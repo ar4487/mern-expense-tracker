@@ -6,7 +6,7 @@ const updatePassword = async (userId, { currentPassword, newPassword }) => {
   if (!user) throw new Error('User not found');
 
   if (user.authProvider === 'google' && !user.hasPassword) {
-    user.password = newPassword; // ✅ Plain - will be hashed by pre-save
+    user.password = newPassword; 
     user.hasPassword = true;
     await user.save();
     return { message: 'Password set for OAuth user' };
@@ -17,7 +17,7 @@ const updatePassword = async (userId, { currentPassword, newPassword }) => {
   const isMatch = await bcrypt.compare(currentPassword, user.password);
   if (!isMatch) throw new Error('Incorrect current password');
 
-  user.password = newPassword; // ✅ Plain
+  user.password = newPassword; 
   await user.save();
 
   return { message: 'Password updated successfully' };

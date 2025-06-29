@@ -11,3 +11,16 @@ exports.createRefreshToken = (userId) => {
     expiresIn: '30d'
   });
 };
+const generateTokenResponse = (user) => {
+  return {
+    accessToken: this.createAccessToken(user._id),
+    refreshToken: this.createRefreshToken(user._id),
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    }
+  };
+};
+module.exports = { generateTokenResponse };
